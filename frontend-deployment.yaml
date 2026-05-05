@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brainwalk-frontend-deploy
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brainwalk-frontend
+  template:
+    metadata:
+      labels:
+        app: brainwalk-frontend
+    spec:
+      containers:
+        - name: brainwalk-frontend
+          image: oithreed/brainwalk-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "300m"
