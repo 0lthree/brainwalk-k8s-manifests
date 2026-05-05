@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: brainwalk-ingress
+  namespace: default
+  annotations:
+    # (선택) HTTPS 나중에 쓸 때
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+spec:
+  ingressClassName: nginx
+
+  # HTTPS 설정 (지금은 선택, 나중에 활성화)
+  tls:
+    - secretName: brainwalk-tls-secret
+      hosts:
+        - brainwalk.click
+
+  rules:
+    - host: brainwalk.click
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: brainwalk-frontend-service
+                port:
+                  number: 80
