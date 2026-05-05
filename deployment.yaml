@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brainwalk-backend-deploy
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brainwalk-backend
+  template:
+    metadata:
+      labels:
+        app: brainwalk-backend
+    spec:
+      containers:
+        - name: brainwalk-backend
+          image: oithreed/dunoesanchaeg-backend:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 8080
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+          envFrom:
+            - configMapRef:
+                name: brainwalk-backend-config
+            - secretRef:
+                name: brainwalk-backend-secret
