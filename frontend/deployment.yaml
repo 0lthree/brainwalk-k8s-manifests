@@ -16,7 +16,7 @@ spec:
       containers:
         - name: brainwalk-frontend
 
-          image: oithreed/brainwalk-frontend:24
+          image: oithreed/brainwalk-frontend:25
 
           imagePullPolicy: Always
           ports:
