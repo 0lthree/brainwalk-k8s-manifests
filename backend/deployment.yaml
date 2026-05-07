@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: brainwalk-backend
-          image: oithreed/dunoesanchaeg-backend:27
+          image: oithreed/dunoesanchaeg-backend:29
           imagePullPolicy: Always
 
           ports:
